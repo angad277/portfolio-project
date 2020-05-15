@@ -3,13 +3,13 @@
 <html lang="en">
 {% load staticfiles %}
 
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
     <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
     <meta name="generator" content="Jekyll v3.8.6">
-    <title>Angad Singh Sandhu</title>
+    <title>Angad's Blog</title>
 
 
     <!-- Bootstrap core CSS -->
@@ -55,8 +55,8 @@
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div class="navbar-nav ml-auto">
                 <a class="nav-item nav-link" href="https://www.instagram.com/angadssandhu/">Instagram<span class="sr-only">(current)</span></a>
-                <a class="nav-item nav-link" href="{% static 'resume.pdf' %}">Resume</a>
-                <a class="nav-item nav-link" href="{% url 'allblogs' %}">Blog</a>
+                <a class="nav-item nav-link" href="{% static 'resume.pdf' %}"">Resume</a>
+                <a class="nav-item nav-link active" href="#">Blog</a>
                 
               </div>
             </div>
@@ -64,44 +64,27 @@
 </header>
 
 <main role="main">
+    <div class = "container">
 
-  <section class="jumbotron text-center">
-    <div class="container">
-      <h1>Hey, I'm Angad!</h1>
-      <p class="lead text-muted">This is my personal portfolio, you can read about me in my blog and read about my jobs!</p>
-      <p>
-        
-            <a href="mailto:angad277@gmail.com" class="btn btn-primary my-2">E-mail</a>
-    
-        
-       
-      </p>
-      <img src = " {% static 'angad.jpeg' %} " height=250/>
-      
-    </div>
-  </section>
-
-  <div class="album py-5 bg-light">
-    <div class="container">
-
-      <div class="row">
-       {% for job in jobs.all %}
-        <div class="col-md-4">
-          <div class="card mb-4 shadow-sm">
-            <img class="card-img-top" src="{{ job.image.url }}"  />
-            <div class="card-body">
-              <p class="card-text">{{ job.summary }}</p>
-                
-            </div>
-          </div>
-        </div>
+        <h1 class="text-center  pt-3">Welcome to Angad's blog</h1>
+        <br>
+        <br>
+        <h2>Latest Posts</h2>
+        <hr/>
+        {% for blog in blogs.all %}
+            
+            <a href="{% url 'detail' blog.id %}"><h3>{{ blog.title }}</h3></a>
+            {{ blog.pub_date_pretty }} 
+            <br />
+            <img class="img-fluid" src="{{ blog.image.url }}" height=100 width=200/>
+            <br />
+            <p>{{ blog.summary }}</p>
+            <br />
         {% endfor %}
 
-      </div>
     </div>
-  </div>
-
 </main>
+
 
 <footer class="text-muted">
   <div class="container text-center">
